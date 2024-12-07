@@ -30,7 +30,8 @@ const ThemeController = () => {
               <input
                 type="radio"
                 name="theme-radios"
-                className="radio theme-controller" 
+                className="radio theme-controller"
+                readOnly
                 checked={selectedTheme === theme}
                 onClick={() => setSelectedTheme(theme)} 
                 value={theme}
