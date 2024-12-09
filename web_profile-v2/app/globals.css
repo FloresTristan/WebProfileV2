@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
 * { 
   font-family: var(--font-poppins);
   opacity: 1;
@@ -9,11 +12,6 @@
   scrollbar-width: thin; 
 }
 
-
-:root {
-  /* --background: #ffffff; */
-  /* --foreground: #171717; */
-}
 
 /* @media (prefers-color-scheme: dark) {
   :root {

@@ -1,46 +1,40 @@
-"use client"
+"use client";
 
 import React from "react";
 
 const ThemeController = () => {
-
   const themes = [
-    "light", "dark", "cupcake",  
-    "synthwave", "luxury", "black", "dim", 
+    "light", "dark", "cupcake", "synthwave", "luxury", "black", "dim",
     "garden", "wireframe", "pastel", "lemonade", "winter",
-    "retro", "cyberpunk", "aqua", "lofi", "valentine", 
+    "retro", "cyberpunk", "aqua", "lofi", "valentine",
   ];
 
-  const [ selectedTheme, setSelectedTheme ] = React.useState<string>(localStorage.getItem("theme") || "light");  
+  const [selectedTheme, setSelectedTheme] = React.useState<string>(localStorage.getItem("theme") || "light");
 
-  React.useEffect(()=>{
-    localStorage.setItem("theme", selectedTheme) 
-  },[selectedTheme])
+  React.useEffect(() => {
+    localStorage.setItem("theme", selectedTheme);
+    // Optionally: Apply the theme dynamically (if using TailwindCSS or other CSS framework).
+    document.documentElement.setAttribute('data-theme', selectedTheme);
+  }, [selectedTheme]);
 
   return (
-    <details className="collapse collapse-arrow flex flex-col bg-base-200 border rounded-b-none" >  
-      <summary className="collapse-title font-medium border-b select-none h-1 text-lg ">Themes ({selectedTheme})</summary> 
-      <div className="collapse-content overflow-y-auto">
-        <div className="form-control z-50 h-[25vh] duration-300 " > 
-          {themes.map((theme, index) => (
-            <label className="label cursor-pointer gap-4 hover:bg-base-100 rounded-lg"
-              key={index}
-            >
-              <span className="label-text">{theme}</span>
-              <input
-                type="radio"
-                name="theme-radios"
-                className="radio theme-controller"
-                readOnly
-                checked={selectedTheme === theme}
-                onClick={() => setSelectedTheme(theme)} 
-                value={theme}
-              />
-            </label>
-          ))}
-        </div>
-      </div>
-    </details >
+    <div className="relative z-10">
+      <label htmlFor="theme-select" className="block text-lg font-medium ">
+        Themes ({selectedTheme})
+      </label>
+      <select
+        id="theme-select"
+        value={selectedTheme}
+        onChange={(e) => setSelectedTheme(e.target.value)}
+        className="mt-2 w-full p-2 border rounded-lg  focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      >
+        {themes.map((theme, index) => (
+          <option className="" key={index} value={theme}>
+            {theme}
+          </option>
+        ))}
+      </select>
+    </div>
   );
 };
 
